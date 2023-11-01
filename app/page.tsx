@@ -76,28 +76,25 @@ export default function Home() {
   };
 
   const finishDay = () => {
-      houses.forEach(async (house, idx) => {
-        if (house.status === "No Answer") {
-          const docRef = doc(db, "curbing", house.id);
-          try{
-
-            await updateDoc(docRef, {
-              status: "Unvisited",
-            });
-          }catch(err){
-            console.log(err)
-          }finally{
-            if(idx + 1 === houses.length){
-              window.location.reload()
-            }
+    houses.forEach(async (house, idx) => {
+      if (house.status === "No Answer") {
+        const docRef = doc(db, "curbing", house.id);
+        try {
+          await updateDoc(docRef, {
+            status: "Unvisited",
+          });
+        } catch (err) {
+          console.log(err);
+        } finally {
+          if (idx + 1 === houses.length) {
+            window.location.reload();
           }
         }
-        if(idx + 1 === houses.length){
-          window.location.reload()
-        }
-      });
-
-     
+      }
+      if (idx + 1 === houses.length) {
+        window.location.reload();
+      }
+    });
   };
 
   const getAll = async () => {
